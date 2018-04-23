@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
 
@@ -14,7 +14,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 const appRoutes: Routes = [
   {path:'dashboard', component:DashboardComponent},
   {path:'',component:SigninComponent },
-  {path:'registration',component:RegistrationComponent}
+  {path:'registration',component:RegistrationComponent},
+  {path:'signin',component:SigninComponent}
+
 ]
 
 @NgModule({
