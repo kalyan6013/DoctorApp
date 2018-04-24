@@ -1,9 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import {TabModule} from 'angular-tabs-component';
-
 import { AppComponent } from './app.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { SigninComponent } from './components/signin/signin.component';
@@ -14,9 +13,10 @@ import { AdminProfileComponent } from './components/admin-profile/admin-profile.
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 const appRoutes: Routes = [
   {path:'dashboard', component:DashboardComponent},
-  {path:'',component:SigninComponent },
   {path:'registration',component:RegistrationComponent},
-  {path:'adminprofile',component:AdminProfileComponent}
+  {path:'adminprofile',component:AdminProfileComponent},
+  {path:'signin',component:SigninComponent}
+
 ]
 
 @NgModule({
@@ -27,7 +27,6 @@ const appRoutes: Routes = [
     HeaderComponent,
     FooterComponent,
     DashboardComponent,
-
     AdminProfileComponent
   ],
   imports: [

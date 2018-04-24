@@ -9,4 +9,12 @@ import { Component } from '@angular/core';
 
 export class RegistrationComponent{
 
+    user={
+        fname:'',
+        lname:'',
+        email:'',
+        phone:'',
+        password:''
+    }
+
 }
