@@ -1,6 +1,285 @@
 <app-header></app-header>
-<br><br>
+<br><br><br><br>
 <div class="container">
-  <h1>Welcome to Admin Panel</h1>
-</div>
+  <h3 style="text-align:center;">Welcome to Admin Panel</h3>
+</div><br>
+<div class="container">
+<ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#home">Personal</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#menu1">Professional</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#menu2">Others</a>
+    </li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content"><ul class="nav nav-tabs" role="tablist"></ul>
+    <div id="home" class="container tab-pane active"><br>
+      <h4>Please Enter Your Personal Details </h4><br>
+      <div class="col-md-4" >
+    
+          <form novalidate #f="ngForm" (ngSubmit)="onSubmit(f)" class="signupform">
+                  <div class="form-group">
+                       <label>First Name:</label>
+                       <input type="text" 
+                       id="firstName"
+                       placeholder="Enter First Name" 
+                        class="form-control" 
+                        ngModel name="firstName" 
+                        #firstName="ngModel" 
+                        (change)="log(firstName)" 
+                        required
+                         minlength="3" 
+                         maxlength="15" 
+                         pattern="^[a-zA-Z][a-zA-Z\s]{2,15}$">  
+                   </div>
+                   <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">            
+                        <div *ngIf="firstName.errors.required">First Name is required.</div>           
+                         <div *ngIf="firstName.errors.minlength">First Name should be minimum {{ firstName.errors.minlength.requiredLength }} and maximum 15 characters
+                        .</div>            
+                        <div *ngIf="firstName.errors.pattern">Only alphabets are allowed.</div>        
+                        </div>   
+                   
+                   <div class="form-group">
+                       <label>Last Name:</label>
+                       <input type="text" 
+                           class="form-control" 
+                           id="lname" 
+                           placeholder="Enter Last Name" 
+                           name="lname"
+                           [(ngModel)]="user.lname"
+                           #userlname="ngModel"
+                           required>
+                   </div>
+                   <div *ngIf="userlname.errors?.required && userlname.touched" class="alert alert-danger">Last name is required</div>
+          
+                   <div class="form-group">
+                       <label>Email:</label>
+                       <input type="email" 
+                           class="form-control" 
+                           id="email" 
+                           placeholder="Enter email" 
+                           name="email"
+                           [(ngModel)]="user.email"
+                           #useremail="ngModel"
+                           pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                           required>
+                   </div>
+                   <div *ngIf="useremail.errors?.required && useremail.touched" class="alert alert-danger">Email is required</div>
+                   <div *ngIf="useremail.errors?.pattern" class="alert alert-danger">Please provide a valid email address</div> 
+          
+                   <div class="form-group">
+                       <label>Phone:</label>
+                       <input type="text"  
+                           class="form-control" 
+                           id="phone" 
+                           placeholder="Enter Phone" 
+                           name="phone"
+                           [(ngModel)]="user.phone"
+                           #userphone="ngModel"
+                           minlength="10"
+                           maxlength="10"
+                          required>
+                   </div>
+                   <div *ngIf="userphone.errors?.maxlength || userphone.errors?.minlength && userphone.touched" class="alert alert-danger">Phone number is not valid</div>
+          
+                   <div class="form-group">
+                       <label>Password:</label>
+                       <input type="password" 
+                           class="form-control" 
+                           id="password" 
+                           placeholder="Enter password" 
+                           name="password"
+                           [(ngModel)]="user.password"
+                           #userpassword="ngModel"
+                           minlength="5"
+                           >
+                   </div>
+                   <div *ngIf="userpassword.errors?.minlength && userpassword.touched" class="alert alert-danger">Password must be minimum 5 characters length</div>
+          
+                   
+                   <button  type="submit" class="btn btn-info" style='float:right'>Next>></button>
+                   <!-- <ul class="nav nav-tabs" role="tablist">
+                   <li class="nav-item">
+                   <a class="nav-link" data-toggle="tab" href="#menu4">Next>></a>
+                   </li>
+                   </ul> -->
+
+                 </form>
+              
+              </div>
+    </div>
+    <div id="menu1" class="container tab-pane fade"><br>
+      <h4>Please Enter Your Professional Details </h4><br>
+      <div class="col-md-4" >
+    
+        <form novalidate #f="ngForm" (ngSubmit)="onSubmit(f)" class="signupform">
+                <div class="form-group">
+                 
+                     <label>Qualification:</label>
+                     <input type="text" 
+                         class="form-control" 
+                         id="qualification" 
+                         placeholder="Enter your qualification" 
+                         name="qualification"
+                         [(ngModel)]="user.qualification"
+                         #userqualification="ngModel" 
+                         required>
+                 </div>
+                 <div *ngIf="userqualification.errors?.required && userqualification.touched" class="alert alert-danger">Qualification is required</div>
+                 
+                 <div class="form-group">
+                     <label>Specialization:</label>
+                     <input type="text" 
+                         class="form-control" 
+                         id="specialization" 
+                         placeholder="Enter your specialization" 
+                         name="specialization"
+                         [(ngModel)]="user.specialization"
+                         #userspecialization="ngModel"
+                         required>
+                 </div>
+                 <div *ngIf="userspecialization.errors?.required && userspecialization.touched" class="alert alert-danger">Specialization is required</div>
+                 
+
+                 <div class="form-group">
+                        <label>Certificates :</label>
+                        <input type="file" 
+                        class="form-control" 
+                        id="certificates" 
+                        placeholder="Select file" 
+                        name="certificates"
+                       required >
+                    </div>
+
+                    <div class="form-group">
+                            <label>GST NO:</label>
+                            <input type="text" 
+                                class="form-control" 
+                                id="gst" 
+                                placeholder="Enter GST NO" 
+                                name="gst"
+                                [(ngModel)]="user.gst"
+                                #usergst="ngModel"
+                                required>
+                        </div>
+                        <div *ngIf="usergst.errors?.required && usergst.touched" class="alert alert-danger">GST NO is required</div>
+
+                 <div class="form-group">
+                     <label>Experience:</label>
+                     <input type="text" 
+                         class="form-control" 
+                         id="experience" 
+                         placeholder="Enter experience" 
+                         name="experience"
+                         [(ngModel)]="user.experience"
+                         #userexperience="ngModel"
+                         required>
+                 </div>
+                 <div *ngIf="userexperience.errors?.required && userexperience.touched" class="alert alert-danger">Experience is required</div>
+
+        
+                 <div class="form-group">
+                     <label>Hospital/Clinic:</label>
+                     <input type="text"  
+                         class="form-control" 
+                         id="clinic" 
+                         placeholder="Enter hospital/clinic name" 
+                         name="clinic"
+                         [(ngModel)]="user.clinic"
+                         #userclinic="ngModel"
+                        
+                        required>
+                 </div>
+                 <div *ngIf="userclinic.errors?.required && userclinic.touched" class="alert alert-danger">This field is required</div>
+        
+                 <div class="form-group">
+                    <label>Address:</label>
+                    <textarea 
+                        class="form-control" 
+                        id="address" 
+                        rows="4"
+                        placeholder="Enter hospital address" 
+                        name="address"
+                        [(ngModel)]="user.address"
+                        #useraddress="ngModel"
+                       
+                       required>
+                       </textarea>
+                </div>
+                <div *ngIf="useraddress.errors?.required && useraddress.touched" class="alert alert-danger">Address is required</div>
+        
+               
+
+                 <button  type="submit" class="btn btn-info" style='float:right'>Next>></button>
+                 <!-- <ul class="nav nav-tabs" role="tablist">
+                 <li class="nav-item">
+                 <a class="nav-link" data-toggle="tab" href="#menu4">Next>></a>
+                 </li>
+                 </ul> -->
+
+               </form>
+            
+            </div>
+
+    </div>
+    <div id="menu2" class="container tab-pane fade"><br>
+      <h4>Please Enter Your Other Details </h4><br>
+      <div class="col-md-4" >
+    
+        <form novalidate #f="ngForm" (ngSubmit)="onSubmit(f)" class="signupform">
+                <div class="form-group">
+                 
+                     <label>Brief Description:</label>
+                     <textarea 
+                         class="form-control" 
+                         id="description" 
+                         rows="5"
+                         placeholder="Enter Brief Description" 
+                         name="description"
+                         [(ngModel)]="user.description"
+                         #userdescription="ngModel" 
+                         required>
+                        </textarea>
+                 </div>
+                 <div *ngIf="userdescription.errors?.required && userdescription.touched" class="alert alert-danger">Brief Description is required</div>
+                 
+                 <div class="form-group">
+                     <label>Additional info:</label>
+                     <textarea 
+                         class="form-control" 
+                         id="info" 
+                         rows="5"
+                         placeholder="Enter Additional info" 
+                         name="info"
+                         [(ngModel)]="user.info"
+                         #userinfo="ngModel"
+                         >
+                         </textarea>
+                 </div>
+                 
+                
+               
+
+                 <button  type="submit" class="btn btn-info" style='float:right'>Save</button>
+                 <!-- <ul class="nav nav-tabs" role="tablist">
+                 <li class="nav-item">
+                 <a class="nav-link" data-toggle="tab" href="#menu4">Next>></a>
+                 </li>
+                 </ul> -->
+
+               </form>
+            
+            </div>
+
+
+    </div>
+
+    
+  </div>
+</div><br><br><br><br><br><br><br><br>
 <app-footer></app-footer>
