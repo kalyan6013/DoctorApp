@@ -15,7 +15,8 @@ const appRoutes: Routes = [
   {path:'dashboard', component:DashboardComponent},
   {path:'registration',component:RegistrationComponent},
   {path:'adminprofile',component:AdminProfileComponent},
-  {path:'signin',component:SigninComponent}
+  {path:'signin',component:SigninComponent},
+  {path:'',component:SigninComponent}
 
 ]
 
