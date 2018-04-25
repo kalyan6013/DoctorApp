@@ -4,12 +4,12 @@
   <div class="col-md-4"></div>
   
   
-  <div class="col-md-4 signup" >
+  <div class="col-md-4 signin" >
       <div class="heading">
       <h2>Sign In</h2>
       </div>
       <br><br>
-  <form novalidate #f="ngForm" (ngSubmit)="onSubmit(f)" class="signupform">
+  <form novalidate #f="ngForm" (ngSubmit)="onSubmit(f)" class="signinform">
       <br>
           
            <div class="form-group">
@@ -37,13 +37,16 @@
                    name="password"
                    [(ngModel)]="user.password"
                    #userpassword="ngModel"
-                   minlength="5"
-                   >
+                   minlength="8"
+                   maxlength="25"
+                   required>
            </div>
-           <div *ngIf="userpassword.errors?.minlength && userpassword.touched" class="alert alert-danger">Password must be minimum 5 characters length</div>
+
+           <div *ngIf="userpassword.errors?.required && userpassword.touched" class="alert alert-danger">Password is required</div>
+           <div *ngIf="userpassword.errors?.minlength && userpassword.touched" class="alert alert-danger">Password must be minimum 8 characters length</div>
            
            
-           <button  type="submit" class="btn btn-primary">Sign In</button>
+           <button  type="submit" class="btn btn-primary" [disabled]="f.form.invalid">Sign In</button>
            <button  type="reset" class="btn btn-danger">Reset</button><br><br>
            <hr>
            <p class="already">Don't have an account? <a href="registration">Register here</a></p>
