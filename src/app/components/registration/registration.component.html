@@ -103,8 +103,7 @@
                  minlength="8"
                  maxlength="25"
                  pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,25}$"
-                 required
-                 >
+                 required>
          </div>
          <div *ngIf="userpassword.errors?.minlength && userpassword.touched" class="alert alert-danger">Password must be minimum 8 characters length</div>
          <div *ngIf="userpassword.errors?.required && userpassword.touched" class="alert alert-danger">Password is required</div>
