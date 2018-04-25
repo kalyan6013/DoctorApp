@@ -19,11 +19,20 @@
                  placeholder="Enter First Name" 
                  name="fname"
                  [(ngModel)]="user.fname"
-                 #userfname="ngModel" 
+                 #userfname="ngModel"
+                 minlength="3" 
+                 maxlength="15" 
+                 pattern="^[a-zA-Z][a-zA-Z\s]{2,15}$"
                  required>
          </div>
-         <div *ngIf="userfname.errors?.required && userfname.touched" class="alert alert-danger">First name is required</div>
-         
+         <div class="alert alert-danger" *ngIf="userfname.touched && !userfname.valid">
+            <div *ngIf="userfname.errors.required">First Name is required.</div>
+            <div *ngIf="userfname.errors.minlength">First Name should be minimum {{ userfname.errors.minlength.requiredLength }} and maximum 15 characters.</div>
+            <div *ngIf="userfname.errors.pattern">Only alphabets are allowed.</div>
+        </div>
+
+         <!-- <div *ngIf="userfname.errors?.required && userfname.touched" class="alert alert-danger">First name is required</div>
+          -->
          <div class="form-group">
              <h6>Last Name:</h6>
              <input type="text" 
@@ -33,9 +42,19 @@
                  name="lname"
                  [(ngModel)]="user.lname"
                  #userlname="ngModel"
+                 minlength="3" 
+                 maxlength="15" 
+                 pattern="^[a-zA-Z][a-zA-Z\s]{2,15}$"
                  required>
          </div>
-         <div *ngIf="userlname.errors?.required && userlname.touched" class="alert alert-danger">Last name is required</div>
+
+         <div class="alert alert-danger" *ngIf="userlname.touched && !userlname.valid">
+            <div *ngIf="userlname.errors.required">Last Name is required.</div>
+            <div *ngIf="userlname.errors.minlength">Last Name should be minimum {{ userlname.errors.minlength.requiredLength }} and maximum 15 characters.</div>
+            <div *ngIf="userlname.errors.pattern">Only alphabets are allowed.</div>
+        </div>
+
+         <!-- <div *ngIf="userlname.errors?.required && userlname.touched" class="alert alert-danger">Last name is required</div> -->
 
          <div class="form-group">
              <h6>Email:</h6>
@@ -49,6 +68,7 @@
                  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
                  required>
          </div>
+
          <div *ngIf="useremail.errors?.required && useremail.touched" class="alert alert-danger">Email is required</div>
          <div *ngIf="useremail.errors?.pattern" class="alert alert-danger">Please provide a valid email address</div> 
 
@@ -63,9 +83,13 @@
                  #userphone="ngModel"
                  minlength="10"
                  maxlength="10"
+                 pattern="^[6789][0-9]{0,10}$"
                 required>
          </div>
-         <div *ngIf="userphone.errors?.maxlength || userphone.errors?.minlength && userphone.touched" class="alert alert-danger">Phone number is not valid</div>
+         <div *ngIf="userphone.errors?.maxlength || userphone.errors?.minlength && userphone.touched" class="alert alert-danger">Enter a 10 digit phone number</div>
+         <div *ngIf="userphone.errors?.pattern" class="alert alert-danger">Please provide a valid phone number</div> 
+         <div *ngIf="userphone.errors?.required && userphone.touched" class="alert alert-danger">Phone Number is required</div>
+
 
          <div class="form-group">
              <h6>Password:</h6>
@@ -76,13 +100,16 @@
                  name="password"
                  [(ngModel)]="user.password"
                  #userpassword="ngModel"
-                 minlength="5"
-                 >
+                 minlength="8"
+                 maxlength="25"
+                 pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,25}$"
+                 required>
          </div>
-         <div *ngIf="userpassword.errors?.minlength && userpassword.touched" class="alert alert-danger">Password must be minimum 5 characters length</div>
-         
-         
-         <button  type="submit" class="btn btn-primary">Sign Up</button>
+         <div *ngIf="userpassword.errors?.minlength && userpassword.touched" class="alert alert-danger">Password must be minimum 8 characters length</div>
+         <div *ngIf="userpassword.errors?.required && userpassword.touched" class="alert alert-danger">Password is required</div>
+         <div *ngIf="userpassword.errors?.pattern" class="alert alert-danger">Required alteast one uppercase/lowercase/number/special character</div>
+                 
+         <button  type="submit" class="btn btn-primary" [disabled]="f.form.invalid">Sign Up</button>
          <button  type="reset" class="btn btn-danger">Cancel</button><br><br>
          <hr>
          <p class="already">Already have an account? <a href="signin">Sign In</a></p>
