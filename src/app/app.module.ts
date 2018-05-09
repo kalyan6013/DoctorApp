@@ -11,11 +11,13 @@ import { FooterComponent } from './components/footer/footer.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { RecentactivityComponent } from './components/recentactivity/recentactivity.component';
 const appRoutes: Routes = [
   {path:'dashboard', component:DashboardComponent},
   {path:'registration',component:RegistrationComponent},
   {path:'adminprofile',component:AdminProfileComponent},
   {path:'signin',component:SigninComponent},
+  {path:'recentactivity',component:RecentactivityComponent},
   {path:'',component:SigninComponent}
 
 ]
@@ -28,7 +30,8 @@ const appRoutes: Routes = [
     HeaderComponent,
     FooterComponent,
     DashboardComponent,
-    AdminProfileComponent
+    AdminProfileComponent,
+    RecentactivityComponent
   ],
   imports: [
     BrowserModule,

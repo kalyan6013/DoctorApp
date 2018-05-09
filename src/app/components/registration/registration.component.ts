@@ -12,6 +12,7 @@ export class RegistrationComponent{
     user={
         fname:'',
         lname:'',
+        mname:'',
         email:'',
         phone:'',
         password:''

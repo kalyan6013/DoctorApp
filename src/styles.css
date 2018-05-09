@@ -19,6 +19,20 @@ p{
 :-ms-input-placeholder {
     font-family: 'Quicksand', sans-serif;
 }
+::-webkit-input-radio {
+    font-family: 'Quicksand', sans-serif;
+}
 .body{
     overflow-x: hidden;
+    font-family: 'Quicksand', sans-serif;
+}
+.headinglink{
+    color:black;
+}
+
+.headinglink:hover{
+    color:#5DD1DA;
+}
+input[type="radio"]:checked ~ .label-text{
+    font-family: 'Quicksand', sans-serif;
 }

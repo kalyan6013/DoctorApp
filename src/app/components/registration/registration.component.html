@@ -1,3 +1,4 @@
+<body ng-app="">
 <div class="body">
 <div class="row">
 
@@ -33,6 +34,27 @@
 
          <!-- <div *ngIf="userfname.errors?.required && userfname.touched" class="alert alert-danger">First name is required</div>
           -->
+
+          <div class="form-group">
+                <h6>Middle Name:</h6>
+                <input type="text" 
+                    class="form-control" 
+                    id="mname" 
+                    placeholder="Enter Middle Name" 
+                    name="mname"
+                    [(ngModel)]="user.mname"
+                    #usermname="ngModel"
+                    minlength="3" 
+                    maxlength="15" 
+                    pattern="^[a-zA-Z][a-zA-Z\s]{2,15}$"
+                    >
+            </div> 
+            <div class="alert alert-danger" *ngIf="usermname.touched && !usermname.valid"> 
+                <div *ngIf="usermname.errors.pattern">Only alphabets are allowed.</div>
+            </div>
+
+
+
          <div class="form-group">
              <h6>Last Name:</h6>
              <input type="text" 
@@ -92,6 +114,13 @@
 
 
          <div class="form-group">
+            <h6>Gender :</h6>
+            <input type="radio" ng-model="myVar" value="Male"  >Male
+            <input type="radio" ng-model="myVar" value="Female">Female
+        </div>
+
+
+         <div class="form-group">
              <h6>Password:</h6>
              <input type="password" 
                  class="form-control" 
@@ -125,3 +154,4 @@
 
 <app-footer></app-footer>
 </div>
+</body>

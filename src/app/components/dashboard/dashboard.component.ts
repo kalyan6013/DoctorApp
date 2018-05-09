@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router} from '@angular/router';
+declare const $;
+
 
 @Component({
   selector: 'app-dashboard',
@@ -8,16 +11,30 @@ import { Component, OnInit } from '@angular/core';
 export class DashboardComponent implements OnInit {
 
   user={
-    fname:'',
-    lname:'',
+    qualification:'',
+    specialization:'',
     email:'',
     phone:'',
-    password:''
+    
+
 }
 
-  constructor() { }
+constructor() { }
 
   ngOnInit() {
+    function timectrl($scope) {
+      $scope.time = new Date();
   }
+  
+    
+    // $('.continue').click(function(){
+    //   $('.nav-tabs > .active').next('li').find('a').trigger('click');
+    // });
+    // $('.back').click(function(){
+    //   $('.nav-tabs > .active').prev('li').find('a').trigger('click');
+    // });
+    console.log('Hello World!');
 
+  }
+  
 }

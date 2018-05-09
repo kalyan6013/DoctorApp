@@ -1,285 +1,371 @@
+<body ng-app="">
+<div class="body">
 <app-header></app-header>
 <br><br><br><br>
 <div class="container">
   <h3 style="text-align:center;">Welcome to Admin Panel</h3>
+  <hr>
 </div><br>
 <div class="container">
-<ul class="nav nav-tabs" role="tablist">
-    <li class="nav-item">
-      <a class="nav-link active" data-toggle="tab" href="#home">Personal</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#menu1">Professional</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#menu2">Others</a>
-    </li>
-  </ul>
-
-  <!-- Tab panes -->
-  <div class="tab-content"><ul class="nav nav-tabs" role="tablist"></ul>
-    <div id="home" class="container tab-pane active"><br>
-      <h4>Please Enter Your Personal Details </h4><br>
-      <div class="col-md-4" >
     
-          <form novalidate #f="ngForm" (ngSubmit)="onSubmit(f)" class="signupform">
-                  <div class="form-group">
-                       <label>First Name:</label>
-                       <input type="text" 
-                       id="firstName"
-                       placeholder="Enter First Name" 
-                        class="form-control" 
-                        ngModel name="firstName" 
-                        #firstName="ngModel" 
-                        (change)="log(firstName)" 
-                        required
-                         minlength="3" 
-                         maxlength="15" 
-                         pattern="^[a-zA-Z][a-zA-Z\s]{2,15}$">  
-                   </div>
-                   <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">            
-                        <div *ngIf="firstName.errors.required">First Name is required.</div>           
-                         <div *ngIf="firstName.errors.minlength">First Name should be minimum {{ firstName.errors.minlength.requiredLength }} and maximum 15 characters
-                        .</div>            
-                        <div *ngIf="firstName.errors.pattern">Only alphabets are allowed.</div>        
-                        </div>   
-                   
-                   <div class="form-group">
-                       <label>Last Name:</label>
-                       <input type="text" 
-                           class="form-control" 
-                           id="lname" 
-                           placeholder="Enter Last Name" 
-                           name="lname"
-                           [(ngModel)]="user.lname"
-                           #userlname="ngModel"
-                           required>
-                   </div>
-                   <div *ngIf="userlname.errors?.required && userlname.touched" class="alert alert-danger">Last name is required</div>
-          
-                   <div class="form-group">
-                       <label>Email:</label>
-                       <input type="email" 
-                           class="form-control" 
-                           id="email" 
-                           placeholder="Enter email" 
-                           name="email"
-                           [(ngModel)]="user.email"
-                           #useremail="ngModel"
-                           pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
-                           required>
-                   </div>
-                   <div *ngIf="useremail.errors?.required && useremail.touched" class="alert alert-danger">Email is required</div>
-                   <div *ngIf="useremail.errors?.pattern" class="alert alert-danger">Please provide a valid email address</div> 
-          
-                   <div class="form-group">
-                       <label>Phone:</label>
-                       <input type="text"  
-                           class="form-control" 
-                           id="phone" 
-                           placeholder="Enter Phone" 
-                           name="phone"
-                           [(ngModel)]="user.phone"
-                           #userphone="ngModel"
-                           minlength="10"
-                           maxlength="10"
-                          required>
-                   </div>
-                   <div *ngIf="userphone.errors?.maxlength || userphone.errors?.minlength && userphone.touched" class="alert alert-danger">Phone number is not valid</div>
-          
-                   <div class="form-group">
-                       <label>Password:</label>
-                       <input type="password" 
-                           class="form-control" 
-                           id="password" 
-                           placeholder="Enter password" 
-                           name="password"
-                           [(ngModel)]="user.password"
-                           #userpassword="ngModel"
-                           minlength="5"
-                           >
-                   </div>
-                   <div *ngIf="userpassword.errors?.minlength && userpassword.touched" class="alert alert-danger">Password must be minimum 5 characters length</div>
-          
-                   
-                   <button  type="submit" class="btn btn-info" style='float:right'>Next>></button>
-                   <!-- <ul class="nav nav-tabs" role="tablist">
-                   <li class="nav-item">
-                   <a class="nav-link" data-toggle="tab" href="#menu4">Next>></a>
-                   </li>
-                   </ul> -->
+    <div class="row">
 
-                 </form>
-              
-              </div>
-    </div>
-    <div id="menu1" class="container tab-pane fade"><br>
-      <h4>Please Enter Your Professional Details </h4><br>
-      <div class="col-md-4" >
-    
-        <form novalidate #f="ngForm" (ngSubmit)="onSubmit(f)" class="signupform">
-                <div class="form-group">
-                 
-                     <label>Qualification:</label>
-                     <input type="text" 
-                         class="form-control" 
-                         id="qualification" 
-                         placeholder="Enter your qualification" 
-                         name="qualification"
-                         [(ngModel)]="user.qualification"
-                         #userqualification="ngModel" 
-                         required>
-                 </div>
-                 <div *ngIf="userqualification.errors?.required && userqualification.touched" class="alert alert-danger">Qualification is required</div>
-                 
-                 <div class="form-group">
-                     <label>Specialization:</label>
-                     <input type="text" 
-                         class="form-control" 
-                         id="specialization" 
-                         placeholder="Enter your specialization" 
-                         name="specialization"
-                         [(ngModel)]="user.specialization"
-                         #userspecialization="ngModel"
-                         required>
-                 </div>
-                 <div *ngIf="userspecialization.errors?.required && userspecialization.touched" class="alert alert-danger">Specialization is required</div>
-                 
-
-                 <div class="form-group">
-                        <label>Certificates :</label>
-                        <input type="file" 
-                        class="form-control" 
-                        id="certificates" 
-                        placeholder="Select file" 
-                        name="certificates"
-                       required >
-                    </div>
-
+        <div class="col-md-1">
+        </div>
+        
+        <div class="col-md-10 signup"  >
+            <p class="already" style="text-align:center">Please fill your professional details here :</p> 
+               
+            <form novalidate #f="ngForm" (ngSubmit)="onSubmit(f)" class="signupform">
+                <br> 
+                <div class="row">
+                <div class="col-md-6 form-border">
                     <div class="form-group">
-                            <label>GST NO:</label>
-                            <input type="text" 
-                                class="form-control" 
-                                id="gst" 
-                                placeholder="Enter GST NO" 
-                                name="gst"
-                                [(ngModel)]="user.gst"
-                                #usergst="ngModel"
-                                required>
-                        </div>
-                        <div *ngIf="usergst.errors?.required && usergst.touched" class="alert alert-danger">GST NO is required</div>
+                         <h6>Qualification:</h6>
+                         <input type="text" 
+                             class="form-control" 
+                             id="qualification" 
+                             placeholder="Enter Qualification" 
+                             name="qualification"
+                             [(ngModel)]="user.qualification"
+                             #userqualification="ngModel"
+                             pattern="^[a-zA-Z][a-zA-Z\s]{2,15}$"
+                             required>
+                     </div>
+                     <div *ngIf="userqualification.errors?.required && userqualification.touched" class="alert alert-danger">Qualification is required</div>
 
-                 <div class="form-group">
-                     <label>Experience:</label>
-                     <input type="text" 
-                         class="form-control" 
-                         id="experience" 
-                         placeholder="Enter experience" 
-                         name="experience"
-                         [(ngModel)]="user.experience"
-                         #userexperience="ngModel"
-                         required>
-                 </div>
-                 <div *ngIf="userexperience.errors?.required && userexperience.touched" class="alert alert-danger">Experience is required</div>
+            
+                     
+                      <div class="form-group">
+                        <h6>Specialization:</h6>
+                        <input type="text" 
+                            class="form-control" 
+                            id="specialization" 
+                            placeholder="Enter Specialization" 
+                            name="specialization"
+                            [(ngModel)]="user.specialization"
+                            #userspecialization="ngModel"
+                           
+                            required>
+                    </div>
+           
+                    <div *ngIf="userspecialization.errors?.required && userspecialization.touched" class="alert alert-danger">Specialization is required</div>
 
-        
-                 <div class="form-group">
-                     <label>Hospital/Clinic:</label>
-                     <input type="text"  
-                         class="form-control" 
-                         id="clinic" 
-                         placeholder="Enter hospital/clinic name" 
-                         name="clinic"
-                         [(ngModel)]="user.clinic"
-                         #userclinic="ngModel"
+            
+                     
+            
+                     <div class="form-group">
+                         <h6>Experience:</h6>
+                         <input type="text" 
+                             class="form-control" 
+                             id="experience" 
+                             placeholder="Enter Experience" 
+                             name="experience"
+                             [(ngModel)]="user.experience"
+                             #userexperience="ngModel"
+                            
+                             required>
+                     </div>
+            
+                     <div *ngIf="userexperience.errors?.required && userexperience.touched" class="alert alert-danger">Experience is required</div>
+                     
+                     
+                     <div class="form-group">
+                         <h6>Practicing Since:</h6>
+                         <input type="text"  
+                             class="form-control" 
+                             id="practicing" 
+                             placeholder="Ex: Practicing Since 1990" 
+                             name="practicing"
+                             [(ngModel)]="user.practicing"
+                             #userpracticing="ngModel"
+                            required>
+                     </div>
+                     <div *ngIf="userpracticing.errors?.required && userpracticing.touched" class="alert alert-danger">Practicing Since is required</div>
+            
+            
                         
-                        required>
-                 </div>
-                 <div *ngIf="userclinic.errors?.required && userclinic.touched" class="alert alert-danger">This field is required</div>
-        
-                 <div class="form-group">
-                    <label>Address:</label>
-                    <textarea 
-                        class="form-control" 
-                        id="address" 
-                        rows="4"
-                        placeholder="Enter hospital address" 
-                        name="address"
-                        [(ngModel)]="user.address"
-                        #useraddress="ngModel"
-                       
-                       required>
-                       </textarea>
-                </div>
-                <div *ngIf="useraddress.errors?.required && useraddress.touched" class="alert alert-danger">Address is required</div>
-        
-               
+                    <div class="form-group">
+                            <h6>Certificates :</h6>
+                            <input type="file" 
+                            class="form-control" 
+                            id="certificates" 
+                            placeholder="Select file" 
+                            name="certificates"
+                            [(ngModel)]="user.certificates"
+                            #usercertificates="ngModel"
+                        required >
+                        </div>
+                        <div *ngIf="usercertificates.errors?.required && usercertificates.touched" class="alert alert-danger">Certificates is required</div>
+                    
+                            <div class="form-group">
+                                    <h6>Do you have your own Hospital/Clinic :</h6>
+                                    <input type="radio" ng-model="myVar" value="yes"  >Yes
+                                    <input type="radio" ng-model="myVar" value="{{no.isDefault}}">No
+                                </div>
+                                 
+                                 <div ng-switch="myVar">
+                                        <div ng-switch-when="yes">
 
-                 <button  type="submit" class="btn btn-info" style='float:right'>Next>></button>
-                 <!-- <ul class="nav nav-tabs" role="tablist">
-                 <li class="nav-item">
-                 <a class="nav-link" data-toggle="tab" href="#menu4">Next>></a>
-                 </li>
-                 </ul> -->
+                                                <div class="form-group">
+                                                        <h6>GST No:</h6>
+                                                        <input type="text"  
+                                                            class="form-control" 
+                                                            id="gst" 
+                                                            placeholder="Enter GST No" 
+                                                            name="gst"
+                                                            [(ngModel)]="user.gst"
+                                                            #usergst="ngModel"
+                                                           required>
+                                                    </div>
+                                                    <div *ngIf="usergst.errors?.required && usergst.touched" class="alert alert-danger">GST NO  is required</div>
+                                           
+                                        </div>
+                                       
+                                  </div>
+                                 
 
-               </form>
-            
-            </div>
+                             <div class="form-group">
+                                 <h6>Profile Pic :</h6>
+                                    <input type="file" 
+                                    class="form-control" 
+                                    id="profile" 
+                                    placeholder="Select file" 
+                                    name="profile"
+                                    [(ngModel)]="user.profile"
+                                    #userprofile="ngModel"
+                                    required >
+                             </div>
+                                <div *ngIf="userprofile.errors?.required && userprofile.touched" class="alert alert-danger">Profile Pic is required</div>       
 
-    </div>
-    <div id="menu2" class="container tab-pane fade"><br>
-      <h4>Please Enter Your Other Details </h4><br>
-      <div class="col-md-4" >
-    
-        <form novalidate #f="ngForm" (ngSubmit)="onSubmit(f)" class="signupform">
-                <div class="form-group">
-                 
-                     <label>Brief Description:</label>
-                     <textarea 
-                         class="form-control" 
-                         id="description" 
-                         rows="5"
-                         placeholder="Enter Brief Description" 
-                         name="description"
-                         [(ngModel)]="user.description"
-                         #userdescription="ngModel" 
-                         required>
-                        </textarea>
-                 </div>
-                 <div *ngIf="userdescription.errors?.required && userdescription.touched" class="alert alert-danger">Brief Description is required</div>
-                 
-                 <div class="form-group">
-                     <label>Additional info:</label>
-                     <textarea 
-                         class="form-control" 
-                         id="info" 
-                         rows="5"
-                         placeholder="Enter Additional info" 
-                         name="info"
-                         [(ngModel)]="user.info"
-                         #userinfo="ngModel"
-                         >
-                         </textarea>
-                 </div>
-                 
+                                <div class="form-group">
+                                        <h6>Languages Spoken:</h6>
+                                        <input type="text"  
+                                            class="form-control" 
+                                            id="languages" 
+                                            placeholder="Enter Languages Spoken " 
+                                            name="languages" 
+                                            [(ngModel)]="user.languages"
+                                            #userlanguages="ngModel"
+                                           >
+                                    </div>
+                                    <div class="form-group">
+                                            <h6>Certifications & Trainings:</h6>
+                                            <textarea 
+                                                class="form-control" 
+                                                id="training" 
+                                                placeholder="Please provide comma(,) in between" 
+                                                rows="3"
+                                                name="training"
+                                                [(ngModel)]="user.training"
+                                                #usertraining="ngModel"
+                                               required>
+                                               </textarea>
+                                        </div>
+                                        <div *ngIf="usertraining.errors?.required && usertraining.touched" class="alert alert-danger">Certifications & Trainings is required</div>
+                                    
+                                        <div class="form-group">
+                                                <h6>Brief Profile:</h6>
+                                                <textarea 
+                                                    class="form-control" 
+                                                    id="profile" 
+                                                    placeholder="Enter brief description" 
+                                                    rows="3"
+                                                    name="profile"
+                                                    [(ngModel)]="user.profile"
+                                                    #userprofile="ngModel"
+                                                   required>
+                                                   </textarea>
+                                            </div>
+                                            <div *ngIf="userprofile.errors?.required && userprofile.touched" class="alert alert-danger">Brief Profile is required</div> 
+
+                                            <div class="form-group">
+                                                    <h6>Membership & Accreditations:</h6>
+                                                    <textarea 
+                                                        class="form-control" 
+                                                        id="membership" 
+                                                        placeholder="Enter Membership & Accreditations" 
+                                                        rows="3"
+                                                        name="membership"
+                                                        [(ngModel)]="user.membership"
+                                                        #usermembership="ngModel"
+                                                       >
+                                                       </textarea>
+                                             </div>
+                                                
+                   
+                                        </div>
+
+                    <div class="col-md-6" style="padding-left:40px;">
+                            <div class="form-group">
+                                    <h6>Honors & Awards:</h6>
+                                    <textarea 
+                                        class="form-control" 
+                                        id="awards" 
+                                        placeholder="Enter Honors & Awards" 
+                                        rows="3"
+                                        name="awards"
+                                        [(ngModel)]="user.awards"
+                                        #userawards="ngModel"
+                                       required>
+                                       </textarea>
+                                </div>
+                                
+                            
+                                <div class="form-group">
+                                        <h6>Clinical Focus:</h6>
+                                        <textarea 
+                                            class="form-control" 
+                                            id="profile" 
+                                            placeholder="Please provide comma(,) in between" 
+                                            rows="3"
+                                            name="cilinicalfocus"
+                                            [(ngModel)]="user.cilinicalfocus"
+                                            #usercilinicalfocus="ngModel"
+                                           >
+                                           </textarea>
+                                    </div>
+                                   
+
+                                    <div class="form-group">
+                                            <h6>Procedures:</h6>
+                                            <textarea 
+                                                class="form-control" 
+                                                id="procedures" 
+                                                placeholder="Please provide comma(,) in between" 
+                                                rows="3"
+                                                name="procedures"
+                                                [(ngModel)]="user.procedures"
+                                                #userprocedures="ngModel"
+                                               >
+                                               </textarea>
+                                     </div>
+
+                                     <p class="already" style="text-align:center">Hospital/Clinic Address :</p> 
+
+                                     <div class="form-group">
+                                            <h6>Area:</h6>
+                                            <input type="text"  
+                                                class="form-control" 
+                                                id="area" 
+                                                placeholder="Enter Clinic Area" 
+                                                name="area" 
+                                                [(ngModel)]="user.area"
+                                                #userarea="ngModel"
+                                               >
+                                        </div>
+
+                                        <div class="form-group">
+                                                <h6>City:</h6>
+                                                <input type="text"  
+                                                    class="form-control" 
+                                                    id="city" 
+                                                    placeholder="Enter City" 
+                                                    name="city" 
+                                                    [(ngModel)]="user.city"
+                                                    #usercity="ngModel"
+                                                   >
+                                            </div>
+
+                                            <div class="form-group">
+                                                    <h6>Pincode:</h6>
+                                                    <input type="text"  
+                                                        class="form-control" 
+                                                        id="pincode" 
+                                                        placeholder="Enter Pincode" 
+                                                        name="pincode" 
+                                                        pattern="^[0-9]{0,6}$"
+                                                        [(ngModel)]="user.pincode"
+                                                        #userpincode="ngModel"
+                                                       required>
+                                                    </div>
+                                                   
+                                                    <div *ngIf="userpincode.errors?.required && userpincode.touched" class="alert alert-danger">Pincode is required</div>
+                                                  
+
+                                                 <div *ngIf="userpincode.errors?.pattern" class="alert alert-danger">Please provide a valid pincode</div>
+
+
+                                                
+                                                <div class="form-group">
+                                                    <h6>Phone/Landline:</h6>
+                                                    <input type="text"  
+                                                        class="form-control" 
+                                                        id="phone" 
+                                                        placeholder="Enter Phone" 
+                                                        name="phone"
+                                                        [(ngModel)]="user.phone"
+                                                        #userphone="ngModel"
+                                                        minlength="12"
+                                                        maxlength="12"
+                                                        pattern="^[0-9]{0,3}[-][0-9]{0,8}$"
+                                                    required>
+                                                </div>
+                                                <div *ngIf="userphone.errors?.pattern || userphone.errors?.maxlength || userphone.errors?.minlength " class="alert alert-danger">Please provide a valid phone number along with STD code</div> 
+                                                <div *ngIf="userphone.errors?.required && userphone.touched" class="alert alert-danger">Phone Number is required</div>
+                                                 
+                                                    <div class="form-group">
+                                                            <h6>Mobile:</h6>
+                                                            <input type="text"  
+                                                                class="form-control" 
+                                                                id="mobile" 
+                                                                placeholder="Enter mobile" 
+                                                                name="mobile"
+                                                                [(ngModel)]="user.mobile"
+                                                                #usermobile="ngModel"
+                                                                minlength="10"
+                                                                maxlength="10"
+                                                                pattern="^[6789][0-9]{0,10}$"
+                                                               required>
+                                                        </div>
+                                                        <div *ngIf="usermobile.errors?.maxlength || usermobile.errors?.minlength && usermobile.touched" class="alert alert-danger">Enter a 10 digit phone number</div>
+                                                        <div *ngIf="usermobile.errors?.pattern" class="alert alert-danger">Please provide a valid phone number</div> 
+                                                        <div *ngIf="usermobile.errors?.required && usermobile.touched" class="alert alert-danger">Phone Number is required</div>
+                                                        <div class="form-group">
+
+                                                                <h6>Timings:</h6>
+                                                                <div ng-controller="timectrl">
+       
+                                                                        <input type="time" 
+                                                                        class="form-control"
+                                                                        id="am" placeholder="HH:mm" 
+                                                                        name="am"
+                                                                        ng-model="time" required >
+                                                                    </div>
+                                                                </div><br>
+
+                                                                <hr>
+                                                                <button  type="submit" class="btn btn-primary" style="float:right">SUBMIT</button>
+                                                               
+                     </div>
+
+                    </div>
+                   
+                    
+                  
+                   
+            </form>
+
+
+           </div>
+       
                 
-               
 
-                 <button  type="submit" class="btn btn-info" style='float:right'>Save</button>
-                 <!-- <ul class="nav nav-tabs" role="tablist">
-                 <li class="nav-item">
-                 <a class="nav-link" data-toggle="tab" href="#menu4">Next>></a>
-                 </li>
-                 </ul> -->
+        
 
-               </form>
-            
-            </div>
+           <div class="col-md-1">
+          </div>
 
-
-    </div>
-
-    
-  </div>
+     </div>
 </div><br><br><br><br><br><br><br><br>
+
+
+
+  
+        
+      
+
+
 <app-footer></app-footer>
+</div>
+</body>

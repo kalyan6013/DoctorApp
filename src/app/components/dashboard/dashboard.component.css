@@ -1,0 +1,30 @@
+.signup{
+    padding-top:30px; 
+    position:relative;
+    
+}
+.signupform{
+    padding:40px;
+    box-shadow:0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+    background-color:#fafafa;
+}
+.heading{
+    margin-left:15px;
+    height: 70px;
+    position:absolute;
+    width:380px;
+    background-color:#74CED9;
+    box-shadow:0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+    color:white;
+    text-align: center;
+    padding-top: 15px;
+}
+.already{
+    font-family: 'Courgette', cursive;
+    font-size:18px; 
+}
+.form-border{
+    border-right: 1px dashed silver;
+    padding-right: 40px;
+    
+}
